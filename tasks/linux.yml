@@ -7,10 +7,10 @@
       - unzip
     state: present
     update_cache: true
-  when: ansible_os_family == 'Archlinux' and not steamos_release.stat.exists
+  when: ansible_os_family == 'Archlinux' and ansible_distribution != 'SteamOS'
 
 - name: Install fontconfig and unzip (Debian/Ubuntu)
-  become: "{{ not steamos_release.stat.exists }}"
+  become: "{{ ansible_distribution != 'SteamOS' }}"
   ansible.builtin.apt:
     name:
       - fontconfig

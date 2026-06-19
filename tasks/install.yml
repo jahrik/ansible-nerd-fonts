@@ -1,9 +1,4 @@
 ---
-- name: Detect SteamOS
-  ansible.builtin.stat:
-    path: /etc/steamos-release
-  register: steamos_release
-
 - name: Install fonts (macOS)
   ansible.builtin.include_tasks: darwin.yml
   when: ansible_os_family == 'Darwin'
