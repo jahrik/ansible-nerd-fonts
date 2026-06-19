@@ -18,7 +18,8 @@
     state: present
     update_cache: true
     cache_valid_time: 3600
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and ansible_distribution != 'SteamOS'
+
 
 - name: Create ~/.local/share/fonts directory
   become: false
