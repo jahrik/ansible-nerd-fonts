@@ -1,0 +1,24 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Stat DejaVu Nerd Font
+      ansible.builtin.stat:
+        path: ~/.local/share/fonts/DejaVuSansMNerdFontMono-Regular.ttf
+      register: dejavu_font
+
+    - name: Assert DejaVu Nerd Font is installed
+      ansible.builtin.assert:
+        that: dejavu_font.stat.exists
+        fail_msg: "DejaVu Sans Mono Nerd Font not found at ~/.local/share/fonts"
+
+    - name: Stat JetBrains Nerd Font
+      ansible.builtin.stat:
+        path: ~/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf
+      register: jetbrains_font
+
+    - name: Assert JetBrains Nerd Font is installed
+      ansible.builtin.assert:
+        that: jetbrains_font.stat.exists
+        fail_msg: "JetBrains Mono Nerd Font not found at ~/.local/share/fonts"
