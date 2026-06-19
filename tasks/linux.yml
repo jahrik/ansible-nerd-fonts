@@ -1,18 +1,23 @@
 ---
-- name: Install fontconfig (Arch Linux)
+- name: Install fontconfig and unzip (Arch Linux)
   become: true
   community.general.pacman:
-    name: fontconfig
-    state: present
-  when: ansible_os_family == 'Archlinux'
-
-- name: Install fontconfig (Debian/Ubuntu)
-  become: "{{ not steamos_release.stat.exists }}"
-  ansible.builtin.package:
     name:
       - fontconfig
       - unzip
     state: present
+    update_cache: true
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install fontconfig and unzip (Debian/Ubuntu)
+  become: "{{ not steamos_release.stat.exists }}"
+  ansible.builtin.apt:
+    name:
+      - fontconfig
+      - unzip
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
   when: ansible_os_family == 'Debian'
 
 - name: Create ~/.local/share/fonts directory
