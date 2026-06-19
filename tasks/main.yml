@@ -1,0 +1,7 @@
+---
+- name: Install nerd fonts
+  ansible.builtin.include_tasks: install.yml
+
+- name: Uninstall nerd fonts
+  ansible.builtin.include_tasks: uninstall.yml
+  when: not (install | default(true) | bool)

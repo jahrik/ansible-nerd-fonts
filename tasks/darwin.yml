@@ -1,0 +1,8 @@
+---
+- name: Install Nerd Fonts (macOS)
+  become: false
+  community.general.homebrew_cask:
+    name:
+      - font-dejavu-sans-mono-nerd-font
+      - font-jetbrains-mono-nerd-font
+    state: present

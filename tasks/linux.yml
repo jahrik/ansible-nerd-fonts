@@ -1,0 +1,33 @@
+---
+- name: Install fontconfig (Arch Linux)
+  become: true
+  community.general.pacman:
+    name: fontconfig
+    state: present
+  when: ansible_os_family == 'Archlinux'
+
+- name: Install fontconfig (Debian/Ubuntu)
+  become: "{{ not steamos_release.stat.exists }}"
+  ansible.builtin.package:
+    name:
+      - fontconfig
+      - unzip
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Create ~/.local/share/fonts directory
+  become: false
+  ansible.builtin.file:
+    path: ~/.local/share/fonts
+    state: directory
+    recurse: true
+
+- name: Download and install Nerd Fonts
+  become: false
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ nerd_fonts_version }}/{{ item.name }}.zip"
+    dest: ~/.local/share/fonts
+    remote_src: true
+    creates: "~/.local/share/fonts/{{ item.creates }}"
+  loop: "{{ nerd_fonts }}"
+  notify: Fc-cache

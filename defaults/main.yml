@@ -1,0 +1,7 @@
+---
+nerd_fonts_version: "3.3.0"
+nerd_fonts:
+  - name: DejaVuSansMono
+    creates: DejaVuSansMNerdFontMono-Regular.ttf
+  - name: JetBrainsMono
+    creates: JetBrainsMonoNerdFontMono-Regular.ttf

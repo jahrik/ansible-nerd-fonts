@@ -1,0 +1,34 @@
+---
+galaxy_info:
+  role_name: nerd_fonts
+  namespace: jahrik
+  author: jahrik
+  description: Install Nerd Fonts (DejaVu Sans Mono, JetBrains Mono) across Arch, Debian/Ubuntu, macOS, and SteamOS
+  issue_tracker_url: https://github.com/jahrik/ansible-nerd-fonts/issues
+  license: GPLv2
+  min_ansible_version: "2.15"
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - jammy
+        - noble
+    - name: macOS
+      versions:
+        - all
+    - name: GenericLinux
+      versions:
+        - all
+  galaxy_tags:
+    - fonts
+    - nerdfonts
+    - terminal
+    - steamdeck
+    - steamos
+
+dependencies: []

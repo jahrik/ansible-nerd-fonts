@@ -1,0 +1,9 @@
+---
+- name: Remove Nerd Font files (Linux)
+  become: false
+  ansible.builtin.file:
+    path: "~/.local/share/fonts/{{ item.creates }}"
+    state: absent
+  loop: "{{ nerd_fonts }}"
+  when: ansible_os_family != 'Darwin'
+  notify: Fc-cache
