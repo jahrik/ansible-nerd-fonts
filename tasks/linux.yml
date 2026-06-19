@@ -1,6 +1,6 @@
 ---
 - name: Install fontconfig and unzip (Arch Linux)
-  become: true
+  become: "{{ not steamos_release.stat.exists }}"
   community.general.pacman:
     name:
       - fontconfig
