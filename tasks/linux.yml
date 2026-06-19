@@ -1,13 +1,13 @@
 ---
 - name: Install fontconfig and unzip (Arch Linux)
-  become: "{{ not steamos_release.stat.exists }}"
+  become: true
   community.general.pacman:
     name:
       - fontconfig
       - unzip
     state: present
     update_cache: true
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_os_family == 'Archlinux' and not steamos_release.stat.exists
 
 - name: Install fontconfig and unzip (Debian/Ubuntu)
   become: "{{ not steamos_release.stat.exists }}"
