@@ -6,7 +6,6 @@
       - fontconfig
       - unzip
     state: present
-    update_cache: true
   when: ansible_os_family == 'Archlinux' and ansible_distribution != 'SteamOS'
 
 - name: Install fontconfig and unzip (Debian/Ubuntu)
