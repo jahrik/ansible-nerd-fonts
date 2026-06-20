@@ -44,19 +44,19 @@ for `jahrik.nvim`, `jahrik.zsh`, and `jahrik.ghostty`.
 ## Testing
 
 ```bash
-uv sync
-uv run yamllint .
-uv run ansible-lint
-uv run molecule test -s localhost
-uv run molecule test
-uv run molecule test -s steamdeck
+yamllint .
+ansible-lint
+molecule test
+molecule test -s steamdeck
+molecule converge
+molecule destroy
 ```
 
-Run with Podman locally:
+Localhost scenario (used in CI on the macOS GitHub Actions runner):
+
 ```bash
-mtest test
-mtest test -s localhost
-mtest test -s steamdeck
+molecule converge -s localhost
+molecule verify -s localhost
 ```
 
 ## CI/CD

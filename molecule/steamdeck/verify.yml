@@ -22,3 +22,13 @@
       ansible.builtin.assert:
         that: jetbrains_font.stat.exists
         fail_msg: "JetBrains Mono Nerd Font not found at ~/.local/share/fonts"
+
+    - name: Verify fc-list finds DejaVu Nerd Font
+      ansible.builtin.command: fc-list
+      register: fc_list_output
+      changed_when: false
+
+    - name: Assert DejaVu Nerd Font is registered with fontconfig
+      ansible.builtin.assert:
+        that: "'DejaVuSansMNerdFont' in fc_list_output.stdout or 'DejaVu Sans M Nerd Font' in fc_list_output.stdout"
+        fail_msg: "DejaVu Nerd Font not registered in fontconfig (fc-cache may not have run)"
