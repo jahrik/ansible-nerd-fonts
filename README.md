@@ -1,6 +1,7 @@
 # ansible-nerd-fonts
 
 [![CICD](https://github.com/jahrik/ansible-nerd-fonts/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-nerd-fonts/actions/workflows/cicd.yml)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-jahrik.nerd__fonts-blue?logo=ansible)](https://galaxy.ansible.com/ui/standalone/roles/jahrik/nerd_fonts/)
 
 Installs [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) for use by terminal emulators, editors, and shell prompts. Installs [DejaVu Sans Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/DejaVuSansMono) and [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono) by default. Intended as a shared dependency for roles that reference Nerd Font glyphs (e.g. `jahrik.nvim`, `jahrik.zsh`, `jahrik.ghostty`).
 
@@ -61,11 +62,12 @@ Set `install: false` to remove installed font files.
 
 ```bash
 uv sync
-uv run yamllint .
-uv run ansible-lint
-uv run molecule test -s localhost   # Local machine
-uv run molecule test                # Ubuntu + Arch Linux (Docker)
-uv run molecule test -s steamdeck   # SteamOS simulation (Docker)
+source .venv/bin/activate
+yamllint .
+ansible-lint
+molecule test                  # Ubuntu + Arch Linux (Docker)
+molecule test -s steamdeck     # SteamOS simulation (Docker)
+molecule test -s localhost     # Local machine
 ```
 
 ## Example Playbook
@@ -88,3 +90,7 @@ dependencies:
 ## License
 
 GPLv2
+
+## Author Information
+
+jahrik@gmail.com

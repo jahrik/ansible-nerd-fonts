@@ -78,34 +78,20 @@ name = "ansible-nerd-fonts"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "docker" },
-    { name = "molecule" },
-    { name = "molecule-plugins", extra = ["docker"] },
-]
-
-[package.dev-dependencies]
-dev = [
     { name = "ansible-core" },
     { name = "ansible-lint" },
-    { name = "docker" },
     { name = "molecule" },
     { name = "molecule-plugins", extra = ["docker"] },
+    { name = "yamllint" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "docker", specifier = ">=7.1.0" },
-    { name = "molecule", specifier = ">=26.4.0" },
-    { name = "molecule-plugins", extras = ["docker"], specifier = ">=25.8.12" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ansible-core" },
-    { name = "ansible-lint" },
-    { name = "docker" },
-    { name = "molecule" },
-    { name = "molecule-plugins", extras = ["docker"] },
+    { name = "ansible-core", specifier = ">=2.16,<2.18" },
+    { name = "ansible-lint", specifier = ">=24.0.0" },
+    { name = "molecule", specifier = ">=24.0.0" },
+    { name = "molecule-plugins", extras = ["docker"], specifier = ">=23.0.0" },
+    { name = "yamllint", specifier = ">=1.38.0" },
 ]
 
 [[package]]

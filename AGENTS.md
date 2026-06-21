@@ -44,6 +44,8 @@ for `jahrik.nvim`, `jahrik.zsh`, and `jahrik.ghostty`.
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
@@ -59,6 +61,10 @@ molecule converge -s localhost
 molecule verify -s localhost
 ```
 
-## CI/CD
+## CI
 
-GitHub Actions runs lint → molecule → steamdeck → macOS in parallel, then publishes to Ansible Galaxy on merge to main via `GALAXY_API_KEY` secret.
+- **Lint**: yamllint + ansible-lint
+- **Molecule**: Ubuntu 24.04 + Arch Linux via Docker (`molecule/default`)
+- **Steam Deck**: Arch container with `/etc/steamos-release` stubbed (`molecule/steamdeck`)
+- **macOS**: `ansible-playbook` against `macos-latest` GHA runner (`molecule/localhost`)
+- **Release**: publishes to Ansible Galaxy on merge to `main`

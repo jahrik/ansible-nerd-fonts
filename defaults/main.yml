@@ -1,4 +1,5 @@
 ---
+install: true
 nerd_fonts_version: "3.3.0"
 nerd_fonts:
   - name: DejaVuSansMono
