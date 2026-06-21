@@ -3,6 +3,29 @@
   ansible.builtin.include_tasks: darwin.yml
   when: ansible_os_family == 'Darwin'
 
-- name: Install fonts (Linux)
-  ansible.builtin.include_tasks: linux.yml
+- name: Install font packages (Arch Linux)
+  ansible.builtin.include_tasks: archlinux.yml
+  when: ansible_os_family == 'Archlinux' and ansible_distribution_release != 'holo'
+
+- name: Install font packages (Debian)
+  ansible.builtin.include_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Create ~/.local/share/fonts directory
+  become: false
+  ansible.builtin.file:
+    path: ~/.local/share/fonts
+    state: directory
+    recurse: true
+  when: ansible_os_family != 'Darwin'
+
+- name: Download and install Nerd Fonts
+  become: false
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ nerd_fonts_version }}/{{ item.name }}.zip"
+    dest: ~/.local/share/fonts
+    remote_src: true
+    creates: "~/.local/share/fonts/{{ item.creates }}"
+  loop: "{{ nerd_fonts }}"
+  notify: Fc-cache
   when: ansible_os_family != 'Darwin'

@@ -1,0 +1,10 @@
+---
+- name: Install fontconfig and unzip (Debian)
+  become: true
+  ansible.builtin.apt:
+    name:
+      - fontconfig
+      - unzip
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
