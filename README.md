@@ -61,6 +61,8 @@ Set `install: false` to remove installed font files.
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test                  # Ubuntu + Arch Linux (Docker)
