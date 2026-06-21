@@ -9,7 +9,7 @@
 
 - name: Install font packages (Debian)
   ansible.builtin.include_tasks: debian.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and ansible_distribution_release != 'holo'
 
 - name: Create ~/.local/share/fonts directory
   become: false
