@@ -44,6 +44,8 @@ for `jahrik.nvim`, `jahrik.zsh`, and `jahrik.ghostty`.
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
