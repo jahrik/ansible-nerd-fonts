@@ -1,4 +1,11 @@
 ---
+- name: Update pacman cache (Arch Linux)
+  become: true
+  community.general.pacman:
+    update_cache: true
+  changed_when: false
+  when: ansible_os_family == 'Archlinux'
+
 - name: Install fontconfig and unzip (Arch Linux)
   become: true
   community.general.pacman:
@@ -6,3 +13,4 @@
       - fontconfig
       - unzip
     state: present
+  when: ansible_os_family == 'Archlinux'

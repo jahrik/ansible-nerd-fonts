@@ -65,9 +65,7 @@ uv sync
 source .venv/bin/activate
 yamllint .
 ansible-lint
-molecule test                  # Ubuntu + Arch Linux (Docker)
-molecule test -s steamdeck     # SteamOS simulation (Docker)
-molecule test -s localhost     # Local machine
+molecule test
 ```
 
 ## Example Playbook

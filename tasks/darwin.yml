@@ -6,3 +6,4 @@
       - font-dejavu-sans-mono-nerd-font
       - font-jetbrains-mono-nerd-font
     state: present
+  when: ansible_os_family == 'Darwin'
