@@ -5,5 +5,5 @@
     path: "~/.local/share/fonts/{{ item.creates }}"
     state: absent
   loop: "{{ nerd_fonts }}"
-  when: ansible_os_family != 'Darwin'
+  when: ansible_facts['os_family'] != 'Darwin'
   notify: Fc-cache

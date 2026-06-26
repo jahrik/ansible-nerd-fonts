@@ -7,46 +7,46 @@
       ansible.builtin.stat:
         path: "~/.local/share/fonts/DejaVuSansMNerdFontMono-Regular.ttf"
       register: dejavu_font_linux
-      when: ansible_os_family != 'Darwin'
+      when: ansible_facts['os_family'] != 'Darwin'
 
     - name: Assert DejaVu Nerd Font is installed (Linux)
       ansible.builtin.assert:
         that: dejavu_font_linux.stat.exists
         fail_msg: "DejaVu Sans Mono Nerd Font not found at ~/.local/share/fonts"
-      when: ansible_os_family != 'Darwin'
+      when: ansible_facts['os_family'] != 'Darwin'
 
     - name: Check DejaVu Nerd Font installed (macOS)
       ansible.builtin.stat:
         path: "~/Library/Fonts/DejaVuSansMNerdFontMono-Regular.ttf"
       register: dejavu_font_macos
-      when: ansible_os_family == 'Darwin'
+      when: ansible_facts['os_family'] == 'Darwin'
 
     - name: Assert DejaVu Nerd Font is installed (macOS)
       ansible.builtin.assert:
         that: dejavu_font_macos.stat.exists
         fail_msg: "DejaVu Sans Mono Nerd Font not found at ~/Library/Fonts"
-      when: ansible_os_family == 'Darwin'
+      when: ansible_facts['os_family'] == 'Darwin'
 
     - name: Check JetBrains Nerd Font installed (Linux)
       ansible.builtin.stat:
         path: "~/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
       register: jetbrains_font_linux
-      when: ansible_os_family != 'Darwin'
+      when: ansible_facts['os_family'] != 'Darwin'
 
     - name: Assert JetBrains Nerd Font is installed (Linux)
       ansible.builtin.assert:
         that: jetbrains_font_linux.stat.exists
         fail_msg: "JetBrains Mono Nerd Font not found at ~/.local/share/fonts"
-      when: ansible_os_family != 'Darwin'
+      when: ansible_facts['os_family'] != 'Darwin'
 
     - name: Check JetBrains Nerd Font installed (macOS)
       ansible.builtin.stat:
         path: "~/Library/Fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
       register: jetbrains_font_macos
-      when: ansible_os_family == 'Darwin'
+      when: ansible_facts['os_family'] == 'Darwin'
 
     - name: Assert JetBrains Nerd Font is installed (macOS)
       ansible.builtin.assert:
         that: jetbrains_font_macos.stat.exists
         fail_msg: "JetBrains Mono Nerd Font not found at ~/Library/Fonts"
-      when: ansible_os_family == 'Darwin'
+      when: ansible_facts['os_family'] == 'Darwin'
