@@ -32,3 +32,33 @@
       ansible.builtin.assert:
         that: "'DejaVuSansMNerdFont' in fc_list_output.stdout or 'DejaVu Sans M Nerd Font' in fc_list_output.stdout"
         fail_msg: "DejaVu Nerd Font not registered in fontconfig (fc-cache may not have run)"
+
+- name: Verify uninstall
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Run jahrik.nerd_fonts with install false
+      ansible.builtin.include_role:
+        name: jahrik.nerd_fonts
+      vars:
+        install: false
+
+    - name: Check DejaVu Nerd Font removed
+      ansible.builtin.stat:
+        path: "~/.local/share/fonts/DejaVuSansMNerdFontMono-Regular.ttf"
+      register: dejavu_font_removed
+
+    - name: Assert DejaVu Nerd Font is removed
+      ansible.builtin.assert:
+        that: not dejavu_font_removed.stat.exists
+        fail_msg: "DejaVu Sans Mono Nerd Font still present at ~/.local/share/fonts after uninstall"
+
+    - name: Check JetBrains Nerd Font removed
+      ansible.builtin.stat:
+        path: "~/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
+      register: jetbrains_font_removed
+
+    - name: Assert JetBrains Nerd Font is removed
+      ansible.builtin.assert:
+        that: not jetbrains_font_removed.stat.exists
+        fail_msg: "JetBrains Mono Nerd Font still present at ~/.local/share/fonts after uninstall"
