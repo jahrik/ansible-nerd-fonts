@@ -43,6 +43,21 @@ To remove fonts, set `install: false`.
 | macOS | Homebrew Cask (`font-*-nerd-font`) |
 | Steam Deck / SteamOS | Detected via `/etc/steamos-release` (extracted without `become`) |
 
+## Tags
+
+Run or skip parts of the role with tags:
+
+```bash
+ansible-playbook playbook.yml --tags nerd_fonts:install
+ansible-playbook playbook.yml --skip-tags nerd_fonts:uninstall
+```
+
+| Tag | Scope |
+|---|---|
+| `nerd_fonts` | All role tasks |
+| `nerd_fonts:install` | Install path only |
+| `nerd_fonts:uninstall` | Uninstall path only |
+
 ## Testing
 
 ```bash
