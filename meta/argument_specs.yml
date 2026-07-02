@@ -1,0 +1,29 @@
+---
+argument_specs:
+  main:
+    short_description: Install Nerd Fonts across Arch, Debian/Ubuntu, macOS, and SteamOS
+    options:
+      install:
+        type: bool
+        default: true
+        description: Set to false to uninstall Nerd Fonts and remove the installed font files
+      nerd_fonts_version:
+        type: str
+        default: "3.3.0"
+        description: Nerd Fonts release tag to download
+      nerd_fonts:
+        type: list
+        elements: dict
+        description: Font families to install; 'creates' is the sentinel file used for idempotency
+        default:
+          - name: DejaVuSansMono
+            creates: DejaVuSansMNerdFontMono-Regular.ttf
+          - name: JetBrainsMono
+            creates: JetBrainsMonoNerdFontMono-Regular.ttf
+        options:
+          name:
+            type: str
+            description: Nerd Fonts release asset name (zip filename without extension)
+          creates:
+            type: str
+            description: Sentinel font file used to check whether the font is already installed
